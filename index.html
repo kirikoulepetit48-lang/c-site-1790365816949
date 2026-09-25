@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qui t'espionne? - JORA</title>
+<style>
+body{background:#000;color:#fff;font-family:Arial;text-align:center;padding:15px}
+.card{background:#0f0f0f;padding:28px;border-radius:25px;max-width:400px;margin:30px auto;border:2px solid #00ff88;box-shadow:0 0 30px #00ff8844}
+input{padding:16px;width:85%;border-radius:12px;border:none;margin:10px 0;font-size:17px;text-align:center;background:#222;color:#fff}
+button{padding:16px;background:linear-gradient(90deg,#00ff88,#00d4ff);border:none;border-radius:12px;color:#000;font-weight:bold;font-size:18px;width:95%;cursor:pointer;margin-top:15px}
+.person{background:#222;padding:12px;border-radius:12px;margin:8px 0;display:flex;justify-content:space-between;align-items:center}
+.loading{font-size:20px;animation:pulse 1s infinite}
+@keyframes pulse{0%{opacity:1}50%{opacity:0.5}100%{opacity:1}}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>👁️ QUI T'ESPIONNE ?</h1>
+<p>Système de JORA - Détecteur secret WhatsApp</p>
+<input type="text" id="nom" placeholder="Ton prénom ou ton numéro">
+<button onclick="scanner()" id="btn">🔍 SCANNER MON WHATSAPP</button>
+<div id="res"></div>
+</div>
+<script>
+function scanner(){
+let nom=document.getElementById('nom').value.trim();
+if(!nom)return alert('Tape ton prénom !');
+let res=document.getElementById('res');
+document.getElementById('btn').innerText='Scan en cours...';
+res.innerHTML=`<br><div class=loading>📡 Connexion à WhatsApp...<br><br>🔍 Analyse de ${nom}...<br><br>👀 Recherche des espions...</div>`;
+
+setTimeout(()=>{
+let lettres=["S","M","K","A","J","B","T","L"];
+let p1=lettres[Math.floor(Math.random()*lettres.length)];
+let p2=lettres[Math.floor(Math.random()*lettres.length)];
+let p3=lettres[Math.floor(Math.random()*lettres.length)];
+let vraiLien="https://kirikoulepetit48-lang.github.io/Espion.html";
+let texteFinal=`😱 ALERTE JORA : ${nom} est espionné par 3 personnes !\n\n👁️ Personnes qui regardent tes statuts en cachette:\n1. ${p1}.*** ton ex\n2. ${p2}.*** ton crush secret\n3. ${p3}.*** quelqu'un de ta classe\n\nVérifie qui t'espionne toi aussi ici: ${vraiLien}`;
+
+res.innerHTML=`
+<h2 style=color:#00ff88>🚨 3 ESPIONS TROUVÉS !</h2>
+<div class=person><span>👤 ${p1}.*** - Ton ex</span><span style=color:red>92% 🕵️</span></div>
+<div class=person><span>👤 ${p2}.*** - Ton crush secret</span><span style=color:orange>87% 👀</span></div>
+<div class=person><span>👤 ${p3}.*** - Quelqu'un de ta classe</span><span style=color:#00ff88>76% 👁️</span></div>
+<p style=color:#aaa;margin-top:15px>Ils regardent tes statuts tous les jours sans liker</p>
+<button style=background:#25D366;color:#fff onclick="partager()">📲 Prévenir mes amis sur WhatsApp</button>
+<br><br>
+<button style=background:#222;color:#fff onclick="location.reload()">🔄 Re-scanner</button>
+`;
+window.texteFinal=texteFinal;
+document.getElementById('btn').innerText='🔍 SCANNER MON WHATSAPP';
+},2500);
+}
+function partager(){
+window.open('https://wa.me/?text='+encodeURIComponent(window.texteFinal),'_blank');
+}
+</script>
+</body>
+</html>
